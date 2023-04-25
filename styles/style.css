@@ -1,0 +1,20 @@
+/* SETUP */
+@import 'setup/vars.css';
+@import 'setup/typography.css';
+@import 'setup/colors.css';
+
+/* BASICS */
+@import 'basics/base.css';
+@import 'basics/layout.css';
+@import 'basics/helpers.css';
+
+/* COMPONENTS */
+@import 'components/canvas.css';
+@import 'components/header.css';
+@import 'components/canvas-controllers.css';
+
+/* PAGES */
+@import 'pages/generator.css';
+
+/* MEDIA QUERIS */
+@import 'setup/mq.css';

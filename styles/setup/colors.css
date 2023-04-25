@@ -1,0 +1,18 @@
+:root {
+  --primary-color: #1e293b;
+  --light-primary-color: #e2e8f0;
+}
+
+.primary-colors,
+.canvas-controls .btn,
+.canvas-controls .btn,
+.canvas-controls .link-btn {
+  color: var(--primary-color);
+  background-color: var(--light-primary-color);
+}
+
+.primary-colors-reversed,
+.btn.primary-colors-reversed {
+  background-color: var(--primary-color);
+  color: var(--light-primary-color);
+}

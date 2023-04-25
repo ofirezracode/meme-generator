@@ -1,0 +1,48 @@
+.flex {
+  display: flex;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.align-center {
+  align-items: center;
+}
+
+.flex.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.clean-list {
+  list-style: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.btn {
+  background-color: inherit;
+
+  color: inherit;
+  font-family: inherit;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.icon {
+  width: 2.4rem;
+}

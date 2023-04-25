@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <title>Mememe</title>
+  </head>
+  <body onload="canvasInit()" class="page-layout primary-colors">
+    <header class="main-header flex align-center space-between">
+      <a class="link nav-link" href="index.html">Mememe</a>
+      <nav>
+        <ul class="nav-links clean-list flex">
+          <li>
+            <a class="link nav-link" href="index.html">Gallery</a>
+          </li>
+          <li>
+            <a class="link nav-link" href="index.html">Memes</a>
+          </li>
+          <li>
+            <a class="link nav-link" href="index.html">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-layout">
+      <section class="canvas-container">
+        <canvas width="500" height="500"></canvas>
+      </section>
+      <section class="canvas-controls primary-colors-reversed flex column">
+        <input oninput="onLineTextInput(this)" class="input-text primary-colors" placeholder="Something hillarious" />
+        <div class="line-crud-buttons flex center">
+          <button onclick="onNextLine()" class="btn btn-next-line">
+            <img class="icon" src="/icons/double-arrows.png" />
+          </button>
+          <button onclick="onAddLine()" class="btn btn-line-add">
+            <img class="icon" src="/icons/add.png" />
+          </button>
+          <button onclick="onDeleteLine()" class="btn btn-line-delete">
+            <img class="icon" src="/icons/trash.png" />
+          </button>
+        </div>
+        <div class="line-style-buttons line-style-layout">
+          <button onclick="onFontSizeChange(1)" class="btn btn-text-size-inc">
+            <img class="icon" src="/icons/increase-font.png" />
+          </button>
+          <button onclick="onFontSizeChange(-1)" class="btn btn-text-size-dec">
+            <img class="icon" src="/icons/decrease-font.png" />
+          </button>
+          <button onclick="onTextAlignChange('right')" class="btn btn-text-align-left">
+            <img class="icon" src="/icons/align-to-left.png" />
+          </button>
+          <button onclick="onTextAlignChange('center')" class="btn btn-text-align-center">
+            <img class="icon" src="/icons/align-to-center.png" />
+          </button>
+          <button onclick="onTextAlignChange('left')" class="btn btn-text-align-right">
+            <img class="icon" src="/icons/align-to-right.png" />
+          </button>
+          <select onchange="onFontFamilyChange(this)" class="select-font-family">
+            <option value="impact">Impact</option>
+            <option value="arial">Arial</option>
+            <option value="cambria">Cambria</option>
+            <option value="verdana">Verdana</option>
+          </select>
+          <label class="link-btn">
+            <img class="icon" src="/icons/text-stroke.png" />
+            <input onchange="onStrokeColorChange(this)" type="color" style="opacity: 0; width: 0" />
+          </label>
+          <label class="link-btn">
+            <img class="icon" src="/icons/paint-board-and-brush.png" />
+            <input onchange="onFontColorChange(this)" type="color" style="opacity: 0; width: 0" />
+          </label>
+        </div>
+        <div class="slider-icons"></div>
+        <div class="output-meme-buttons">
+          <button onclick="onDownloadClick(this)" class="btn btn-meme-download">Download</button>
+          <button class="btn btn-meme-share">Share</button>
+        </div>
+      </section>
+    </main>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
+  </body>
+</html>
