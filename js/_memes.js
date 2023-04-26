@@ -12,3 +12,7 @@ const gMemesArray = [
   { name: 'meme-011.jpg', description: 'Two Buttons' },
   { name: 'meme-012.jpg', description: 'Uno Draw 25 Cards' },
 ]
+
+function getMemesArray() {
+  return gMemesArray
+}

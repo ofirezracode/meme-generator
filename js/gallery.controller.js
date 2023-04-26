@@ -2,7 +2,7 @@
 
 function renderGallery() {
   let cardsHTML = ''
-  cardsHTML += gMemesArray
+  cardsHTML += getMemesArray()
     .map((meme, i) => {
       return `
     <article onclick="onGalleryItemClick(${i})" class="gallery-item">

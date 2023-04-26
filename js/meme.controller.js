@@ -15,7 +15,7 @@ function canvasInit(i) {
 
   // resizeCanvas()
 
-  createMeme(`/images/${gMemesArray[i].name}`)
+  createMeme(`/images/${getMemesArray()[i].name}`)
   createLine('Hello there!', { x: gElCanvas.width / 2, y: 50 })
 
   drawMeme()
