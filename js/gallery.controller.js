@@ -6,7 +6,7 @@ function renderGallery() {
     .map((meme, i) => {
       return `
     <article onclick="onGalleryItemClick(${i})" class="gallery-item">
-      <img src="/images/${meme.name}" />
+      <img src="./images/${meme.name}" />
       <div class="gallery-item-overlay flex column">
         <i class="fa-solid fa-pen flex center"></i>
         <p>${meme.description}</p>
