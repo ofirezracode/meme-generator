@@ -304,8 +304,8 @@ function getEvPos(ev) {
 /*Handling output*/
 /*******************************/
 
-function onDownloadClick(elLink) {
-  gDownloadRequired = elLink
+function onDownloadClick(el) {
+  gDownloadRequired = el
   clearMarkedText()
 }
 
@@ -320,4 +320,9 @@ function downloadCanvas() {
   document.body.removeChild(a)
 
   gDownloadRequired = null
+}
+
+function onSaveClick() {
+  saveMeme(getMeme())
+  renderSavedMemes()
 }

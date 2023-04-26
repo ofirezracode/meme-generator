@@ -4,10 +4,12 @@ let gCurrPage = '.gallery-page'
 
 function onAppInit() {
   renderGallery()
+  renderSavedMemes()
 }
 
 function onSwitchPage(switchTo) {
   const switchToClass = `.${switchTo}-page`
+  if (switchToClass === gCurrPage) return
   switchPage(switchToClass)
   gCurrPage = switchToClass
 }

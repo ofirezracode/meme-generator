@@ -23,8 +23,7 @@
   box-shadow: 0 0 10px rgba(226, 232, 240, 0.25);
 }
 
+.saved-memes-item .saved-memes-item-overlay,
 .gallery-item .gallery-item-overlay {
   background-color: rgba(226, 232, 240, 0.55);
-  height: 100%;
-  width: 100%;
 }
