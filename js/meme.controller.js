@@ -10,6 +10,7 @@ let gDownloadRequired
 function canvasInit(i) {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
+  gCtx.font = `16px impact`
 
   addListeners()
 
