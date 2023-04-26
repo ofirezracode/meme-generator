@@ -7,7 +7,7 @@ let gCtx
 let gStartPos
 let gDownloadRequired
 
-function canvasInit() {
+function canvasInit(i) {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
 
@@ -15,7 +15,7 @@ function canvasInit() {
 
   // resizeCanvas()
 
-  createMeme('/images/distracted-boyfriend.jpg')
+  createMeme(`/images/${gMemesArray[i].name}`)
   createLine('Hello there!', { x: gElCanvas.width / 2, y: 50 })
 
   drawMeme()
@@ -29,9 +29,7 @@ function afterImgLoad(meme, elImg) {
     drawTextLine(meme, line)
   })
 
-  console.log('gDownloadRequired', gDownloadRequired)
   if (gDownloadRequired) {
-    console.log('gDownloadRequired', gDownloadRequired)
     downloadCanvas()
   }
 }
@@ -51,18 +49,18 @@ function addListeners() {
 /*******************************/
 
 function setCanvasDimensions(imgWidth, imgHeight) {
-  let canvasWidth
-  let canvasHeight
+  let canvasWidth = imgWidth
+  let canvasHeight = imgHeight
   let isWide = false
-  if (imgWidth > imgHeight) isWide = true
+  if (canvasWidth > canvasHeight) isWide = true
 
   if (isWide) {
-    if (imgWidth > 650) {
+    if (canvasWidth > 650) {
       canvasWidth = 650
       canvasHeight = (imgHeight * canvasWidth) / imgWidth
     }
   } else {
-    if (imgHeight > 650) {
+    if (canvasHeight > 650) {
       canvasHeight = 650
       canvasWidth = (imgWidth * canvasHeight) / imgHeight
     }
@@ -164,6 +162,7 @@ function clearMarkedText() {
 /*******************************/
 
 function onLineTextInput(el) {
+  if (!getCurrLine()) return
   setCurrLineText(el.value)
   drawMeme()
 }
@@ -174,8 +173,9 @@ function setTextInputValue(val) {
 }
 
 function onAddLine() {
+  document.querySelector('.input-text').value = ''
+
   createLine('TEXT', { x: gElCanvas.width / 2, y: gElCanvas.height - 64 })
-  console.log('getMeme()', getMeme())
   drawMeme()
 }
 
@@ -222,6 +222,15 @@ function addMouseListeners() {
   gElCanvas.addEventListener('mousedown', onDown)
   gElCanvas.addEventListener('mousemove', onMove)
   gElCanvas.addEventListener('mouseup', onUp)
+
+  document.addEventListener('mousedown', function (event) {
+    if (event.button === 0) {
+      const elMainLayout = event.target.closest('.main-layout')
+      if (!elMainLayout) {
+        clearMarkedText()
+      }
+    }
+  })
 }
 
 function addTouchListeners() {
@@ -249,7 +258,7 @@ function onDown(ev) {
 function onMove(ev) {
   const currLine = getCurrLine()
   if (!currLine || !currLine.isDrag) return
-  console.log('Move')
+
   const pos = getEvPos(ev)
   const dx = pos.x - gStartPos.x
   const dy = pos.y - gStartPos.y
@@ -259,6 +268,8 @@ function onMove(ev) {
 }
 
 function onUp() {
+  const currLine = getCurrLine()
+  if (!currLine || !currLine.isDrag) return
   setLineDrag(false)
   gStartPos = null
   document.body.style.cursor = 'default'

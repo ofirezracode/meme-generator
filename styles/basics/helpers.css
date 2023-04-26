@@ -46,3 +46,19 @@
 .icon {
   width: 2.4rem;
 }
+
+.page {
+  transition: all 0.4s;
+}
+
+.disappear {
+  scale: 1.2;
+  translate: 0 -25%;
+  opacity: 0;
+}
+
+.appear {
+  scale: 0.8;
+  translate: 0 25%;
+  opacity: 0;
+}

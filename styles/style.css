@@ -15,6 +15,7 @@
 
 /* PAGES */
 @import 'pages/generator.css';
+@import 'pages/gallery.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';

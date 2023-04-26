@@ -11,9 +11,11 @@
 }
 
 .main-layout {
+  width: fit-content;
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 2.4rem;
+  justify-items: center;
 }
 
 .nav-layout {

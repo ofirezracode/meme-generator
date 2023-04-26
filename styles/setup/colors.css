@@ -6,7 +6,8 @@
 .primary-colors,
 .canvas-controls .btn,
 .canvas-controls .btn,
-.canvas-controls .link-btn {
+.canvas-controls .link-btn,
+.canvas-controls .select-font-family {
   color: var(--primary-color);
   background-color: var(--light-primary-color);
 }
@@ -15,4 +16,15 @@
 .btn.primary-colors-reversed {
   background-color: var(--primary-color);
   color: var(--light-primary-color);
+}
+
+.canvas-controls .btn:hover,
+.link-btn:hover {
+  box-shadow: 0 0 10px rgba(226, 232, 240, 0.25);
+}
+
+.gallery-item .gallery-item-overlay {
+  background-color: rgba(226, 232, 240, 0.55);
+  height: 100%;
+  width: 100%;
 }

@@ -1,4 +1,5 @@
 .canvas-controls {
+  height: 34.6rem;
   padding: 2.4rem;
   border-radius: 6px;
   gap: 2.4rem;
@@ -12,7 +13,8 @@
   font-size: 1.6rem;
 }
 
-.canvas-controls .btn {
+.canvas-controls .line-crud-buttons .btn,
+.canvas-controls .line-style-buttons .btn {
   padding: 1.2rem;
   padding-block-end: 0.8rem;
 }
@@ -27,11 +29,37 @@
 }
 
 .link-btn {
-  display: inline-block;
   width: 4.8rem;
   height: 4.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.canvas-controls .btn,
+.link-btn {
+  transition: all 0.15s;
+}
+
+.canvas-controls .btn:hover,
+.link-btn:hover {
+  scale: 1.2;
 }
 
 .select-font-family {
   grid-column: span 3;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1.6rem;
+}
+
+.output-meme-buttons {
+  margin-block-start: auto;
+  gap: 1.2rem;
+}
+
+.output-meme-buttons .btn {
+  padding: 1.2rem;
+  font-size: 1.6rem;
+  flex: 1;
 }
