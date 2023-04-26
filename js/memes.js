@@ -1,3 +1,4 @@
+'use strict'
 const gMemesArray = [
   { name: 'meme-001.jpg', description: 'Bernie I am once again asking for your support' },
   { name: 'meme-002.png', description: 'Buff Doge vs Cheems' },
