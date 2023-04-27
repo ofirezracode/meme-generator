@@ -11,7 +11,7 @@
   </head>
   <body onload="onAppInit()" class="page-layout primary-colors">
     <header class="main-header flex align-center space-between">
-      <a class="link nav-link" href="index.html">Mememe</a>
+      <a onclick="onSwitchPage('gallery')" class="link nav-link" href="#">Mememe</a>
       <nav>
         <ul class="nav-links clean-list flex">
           <li>
@@ -78,7 +78,7 @@
           <!-- <div class="slider-icons"></div> -->
           <div class="output-meme-buttons flex">
             <button onclick="onSaveClick()" class="btn btn-meme-download"><i class="fa-solid fa-floppy-disk"></i></button>
-            <button onclick="onDownloadClick(this)" class="btn btn-meme-download"><i class="fa-solid fa-download"></i></button>
+            <button onclick="onDownloadClick()" class="btn btn-meme-download"><i class="fa-solid fa-download"></i></button>
             <button class="btn btn-meme-share"><i class="fa-solid fa-share-nodes"></i></button>
           </div>
         </section>
@@ -87,20 +87,15 @@
         <section class="gallery"></section>
       </div>
       <div class="page saved-memes-page appear hidden">
-        <section class="saved-memes">
-          <!-- <article onclick="onGalleryItemClick()" class="saved-memes-item">
-            <img src="images/meme-001.jpg" />
-            <div class="saved-memes-item-overlay flex column">
-              <i onclick="onEditSavedMemeClick()" class="fa-solid fa-pen flex"></i>
-              <i class="fa-solid fa-trash flex"></i>
-            </div>
-          </article> -->
+        <section class="saved-memes flex column center">
+          <article class="saved-memes-item"></article>
         </section>
       </div>
     </main>
     <script src="js/memes.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/painter.controller.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/saved-memes.controller.js"></script>
     <script src="js/gallery.controller.js"></script>

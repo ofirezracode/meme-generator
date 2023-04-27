@@ -3,8 +3,6 @@
 }
 
 .saved-memes {
-  column-count: 4;
-  column-width: 22rem;
   column-gap: 1.6rem;
 }
 
@@ -23,6 +21,10 @@
 
   overflow: hidden;
   cursor: pointer;
+}
+
+.saved-memes .saved-memes-item canvas {
+  display: block;
 }
 
 .saved-memes .saved-memes-item .saved-memes-item-overlay {

@@ -28,12 +28,9 @@ function getSavedMemes() {
 }
 
 function saveMeme(meme) {
-  console.log('here')
   loadSavedMemes()
-  console.log('memes', memes)
 
   memes.unshift(meme)
-  console.log('new memes', memes)
 
   saveToStorage(MEMES_KEY, memes)
 }

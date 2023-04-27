@@ -5,34 +5,22 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
 let gCtx
 let gStartPos
-let gDownloadRequired
 
-function canvasInit(i) {
+function canvasInit(src, i) {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
-  gCtx.font = `16px impact`
 
   addListeners()
 
   // resizeCanvas()
 
-  createMeme(`images/${getMemesArray()[i].name}`)
-  createLine('Hello there!', { x: gElCanvas.width / 2, y: 50 })
-
-  drawMeme()
-}
-
-function afterImgLoad(meme, elImg) {
-  setCanvasDimensions(elImg.width, elImg.height)
-  gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-
-  meme.lines.forEach((line) => {
-    drawTextLine(meme, line)
-  })
-
-  if (gDownloadRequired) {
-    downloadCanvas()
+  if (src === 'gallery') {
+    createMeme(`images/${getMemesArray()[i].name}`)
+    createLine('Hello there!', { x: gElCanvas.width / 2, y: 50 })
+  } else if (src === 'saved-meme') {
   }
+
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function addListeners() {
@@ -49,113 +37,11 @@ function addListeners() {
 /*Setting up the canvas*/
 /*******************************/
 
-function setCanvasDimensions(imgWidth, imgHeight) {
-  let canvasWidth = imgWidth
-  let canvasHeight = imgHeight
-  let isWide = false
-  if (canvasWidth > canvasHeight) isWide = true
-
-  if (isWide) {
-    if (canvasWidth > 650) {
-      canvasWidth = 650
-      canvasHeight = (imgHeight * canvasWidth) / imgWidth
-    }
-  } else {
-    if (canvasHeight > 650) {
-      canvasHeight = 650
-      canvasWidth = (imgWidth * canvasHeight) / imgHeight
-    }
-  }
-
-  gElCanvas.width = canvasWidth
-  gElCanvas.height = canvasHeight
-}
-
 function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container')
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
   drawMeme(getMeme())
-}
-
-/*******************************/
-/*Drawing*/
-/*******************************/
-
-function drawMeme() {
-  const meme = getMeme()
-  const elImg = new Image()
-  elImg.src = meme.img
-
-  elImg.onload = () => {
-    afterImgLoad(meme, elImg)
-  }
-}
-
-function drawTextLine(meme, line) {
-  gCtx.lineWidth = 2
-  gCtx.strokeStyle = meme.strokeColor
-  gCtx.fillStyle = meme.fontColor
-  gCtx.font = `${meme.size}px ${meme.family}`
-  gCtx.textAlign = meme.align
-  gCtx.textBaseline = 'middle'
-
-  const { pos } = line
-
-  gCtx.fillText(line.text, pos.x, pos.y)
-  gCtx.strokeText(line.text, pos.x, pos.y)
-
-  calcLineDimensions(line, meme.align)
-
-  if (line.isCurrLine) {
-    const borderWidth = 2
-
-    gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = borderWidth
-    gCtx.setLineDash([8])
-
-    const { startX, startY, width, height } = line.dimensions
-
-    gCtx.strokeRect(startX, startY, width, height)
-
-    gCtx.setLineDash([0])
-  }
-}
-
-function calcLineDimensions(line, align) {
-  const textWidth = gCtx.measureText(line.text).width
-  const textHeight = gCtx.measureText(line.text).actualBoundingBoxAscent + gCtx.measureText(line.text).actualBoundingBoxDescent
-
-  let borderWidth = 0
-  let textPadding = 0
-  let alignModifier = 0
-
-  if (line.isCurrLine) {
-    borderWidth = 2
-    textPadding = 10
-    if (align !== 'center') {
-      alignModifier = textWidth / 2
-    }
-    if (align === 'right') {
-      alignModifier *= -1
-    }
-  }
-
-  const { pos } = line
-
-  const lineDimensions = {
-    startX: pos.x - textWidth / 2 - borderWidth - textPadding + alignModifier,
-    startY: pos.y - textHeight / 2 - borderWidth - textPadding,
-    width: textWidth + borderWidth * 2 + textPadding * 2,
-    height: textHeight + borderWidth * 2 + textPadding * 2,
-  }
-
-  setLineDimensions(line, lineDimensions)
-}
-
-function clearMarkedText() {
-  unsetCurrLine()
-  drawMeme()
 }
 
 /*******************************/
@@ -165,7 +51,7 @@ function clearMarkedText() {
 function onLineTextInput(el) {
   if (!getCurrLine()) return
   setCurrLineText(el.value)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function setTextInputValue(val) {
@@ -177,42 +63,47 @@ function onAddLine() {
   document.querySelector('.input-text').value = ''
 
   createLine('TEXT', { x: gElCanvas.width / 2, y: gElCanvas.height - 64 })
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onNextLine() {
   advanceLine()
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onDeleteLine() {
   deleteLine()
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onFontSizeChange(change) {
   setFontSize(change)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onTextAlignChange(direction) {
   setTextAlign(direction)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onFontFamilyChange(el) {
   setFontFamily(el.value)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onFontColorChange(el) {
   setFontColor(el.value)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onStrokeColorChange(el) {
   setStrokeColor(el.value)
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
+}
+
+function clearMarkedText() {
+  unsetCurrLine()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 /*******************************/
@@ -251,7 +142,7 @@ function onDown(ev) {
 
   setTextInputValue(getCurrLine().text)
 
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 
   document.body.style.cursor = 'grabbing'
 }
@@ -265,7 +156,7 @@ function onMove(ev) {
   const dy = pos.y - gStartPos.y
   moveLine(dx, dy)
   gStartPos = pos
-  drawMeme()
+  drawMeme(gElCanvas, getMeme(), 500, true)
 }
 
 function onUp() {
@@ -304,25 +195,13 @@ function getEvPos(ev) {
 /*Handling output*/
 /*******************************/
 
-function onDownloadClick(el) {
-  gDownloadRequired = el
+function onDownloadClick() {
+  setDownloadAsRequired()
   clearMarkedText()
 }
 
-function downloadCanvas() {
-  const data = gElCanvas.toDataURL()
-
-  const a = document.createElement('a')
-  a.href = data
-  a.download = 'my-meme'
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-
-  gDownloadRequired = null
-}
-
 function onSaveClick() {
+  clearMarkedText()
   saveMeme(getMeme())
   renderSavedMemes()
 }

@@ -15,6 +15,8 @@ let gMeme = {
   family: '',
   fontColor: '',
   strokeColor: '',
+  memeImgData: '',
+  originalCanvasDimensions: { width: '', height: '' },
 }
 
 let gCurrLine = 0
@@ -33,6 +35,10 @@ function createMeme(img, size = 32, align = 'center', family = 'impact', fontCol
     fontColor,
     strokeColor,
   }
+}
+
+function setMeme(meme) {
+  gMeme = meme
 }
 
 function createLine(text = '', pos = '', rotation = '') {
@@ -61,6 +67,7 @@ function setFontFamily(family) {
 function setFontColor(color) {
   gMeme.fontColor = color
 }
+
 function setStrokeColor(color) {
   gMeme.strokeColor = color
 }
@@ -71,6 +78,15 @@ function getCurrLine() {
 
 function setCurrLineText(text) {
   getCurrLine().text = text
+}
+
+function setMemeImgData(memeImgData) {
+  console.log('saving')
+  gMeme.memeImgData = memeImgData
+}
+
+function setOriginalCanvasDimensions(width, height) {
+  gMeme.originalCanvasDimensions = { width, height }
 }
 
 function advanceLine() {

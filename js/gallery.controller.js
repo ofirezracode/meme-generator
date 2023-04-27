@@ -20,7 +20,6 @@ function renderGallery() {
 }
 
 function onGalleryItemClick(itemIndex) {
-  console.log('onGalleryItemClick')
-  canvasInit(itemIndex)
+  canvasInit('gallery', itemIndex)
   onSwitchPage('generator')
 }
