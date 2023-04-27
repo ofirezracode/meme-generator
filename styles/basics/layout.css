@@ -1,20 +1,11 @@
 .page-layout {
-  display: grid;
-  grid-template-columns: minmax(2.4rem, 1fr) minmax(90rem, 110rem) minmax(2.4rem, 1fr);
-}
-
-.page-layout > *:not(.full) {
-  grid-column: 2;
-}
-.page-layout > .full {
-  grid-column: 1 / -1;
+  display: block;
 }
 
 .main-layout {
-  width: fit-content;
+  width: 100%;
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 2.4rem;
+  grid-template-columns: 1fr;
   justify-items: center;
 }
 

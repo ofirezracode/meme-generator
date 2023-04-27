@@ -5,6 +5,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
 let gCtx
 let gStartPos
+let gSetWidth
 
 function canvasInit(src, i) {
   gElCanvas = document.querySelector('canvas')
@@ -14,13 +15,21 @@ function canvasInit(src, i) {
 
   // resizeCanvas()
 
+  // gSetWidth = window.innerWidth > 500 ? 500 : window.innerWidth
+  gSetWidth = window.innerWidth > 500 ? 500 : window.innerWidth
+
   if (src === 'gallery') {
     createMeme(`images/${getMemesArray()[i].name}`)
-    createLine('Hello there!', { x: gElCanvas.width / 2, y: 50 })
+    createLine('Hello there!', { x: gSetWidth / 2, y: 50 })
   } else if (src === 'saved-meme') {
   }
 
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  console.log('document.querySelector("body").offsetWidth', document.querySelector('body').offsetWidth)
+  console.log('document.querySelector("body").clientWidth', document.querySelector('body').clientWidth)
+  console.log('screen.width', screen.width)
+  console.log('window. innerWidth', window.innerWidth)
+
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function addListeners() {
@@ -51,7 +60,7 @@ function resizeCanvas() {
 function onLineTextInput(el) {
   if (!getCurrLine()) return
   setCurrLineText(el.value)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function setTextInputValue(val) {
@@ -63,47 +72,47 @@ function onAddLine() {
   document.querySelector('.input-text').value = ''
 
   createLine('TEXT', { x: gElCanvas.width / 2, y: gElCanvas.height - 64 })
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onNextLine() {
   advanceLine()
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onDeleteLine() {
   deleteLine()
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onFontSizeChange(change) {
   setFontSize(change)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onTextAlignChange(direction) {
   setTextAlign(direction)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onFontFamilyChange(el) {
   setFontFamily(el.value)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onFontColorChange(el) {
   setFontColor(el.value)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onStrokeColorChange(el) {
   setStrokeColor(el.value)
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function clearMarkedText() {
   unsetCurrLine()
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 /*******************************/
@@ -142,7 +151,7 @@ function onDown(ev) {
 
   setTextInputValue(getCurrLine().text)
 
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 
   document.body.style.cursor = 'grabbing'
 }
@@ -156,7 +165,7 @@ function onMove(ev) {
   const dy = pos.y - gStartPos.y
   moveLine(dx, dy)
   gStartPos = pos
-  drawMeme(gElCanvas, getMeme(), 500, true)
+  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
 function onUp() {

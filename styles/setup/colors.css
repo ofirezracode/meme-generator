@@ -13,7 +13,8 @@
 }
 
 .primary-colors-reversed,
-.btn.primary-colors-reversed {
+.btn.primary-colors-reversed,
+header {
   background-color: var(--primary-color);
   color: var(--light-primary-color);
 }

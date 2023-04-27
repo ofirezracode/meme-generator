@@ -39,6 +39,7 @@ function setCanvasDimensions(canvas, imgWidth, imgHeight, setWidth = 650) {
   let canvasHeight = imgHeight
   let isWide = false
   if (canvasWidth > canvasHeight) isWide = true
+  console.log('isWide', isWide)
   if (isWide) {
     if (canvasWidth > setWidth) {
       canvasWidth = setWidth
@@ -48,9 +49,17 @@ function setCanvasDimensions(canvas, imgWidth, imgHeight, setWidth = 650) {
     if (canvasHeight > setWidth) {
       canvasHeight = setWidth
       canvasWidth = (imgWidth * canvasHeight) / imgHeight
+      console.log('canvasWidth', canvasWidth)
+      console.log('setWidth', setWidth)
       if (canvasWidth > setWidth) {
         canvasWidth = setWidth
         canvasHeight = (imgHeight * canvasWidth) / imgWidth
+        // if (window.innerWidth < 650) {
+        //   canvasWidth = screen.width
+        // } else {
+        //   canvasWidth = setWidth
+        // }
+        // canvasHeight = (imgHeight * canvasWidth) / imgWidth
       }
     }
   }
