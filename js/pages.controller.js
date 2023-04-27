@@ -1,13 +1,16 @@
 'use strict'
 
 let gCurrPage = '.gallery-page'
+let gIsMobile
 
 function onAppInit() {
+  gIsMobile = window.innerWidth >= 650 ? false : true
   renderGallery()
   renderSavedMemes()
 }
 
 function onSwitchPage(switchTo) {
+  if (gIsMobile) controlMobileNav(false)
   const switchToClass = `.${switchTo}-page`
   if (switchToClass === gCurrPage) return
   switchPage(switchToClass)

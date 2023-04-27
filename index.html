@@ -12,8 +12,8 @@
   <body onload="onAppInit()" class="page-layout primary-colors">
     <header class="main-header flex align-center space-between full">
       <a onclick="onSwitchPage('gallery')" class="link nav-link" href="#">Mememe</a>
-      <nav>
-        <ul class="nav-links clean-list flex">
+      <nav class="">
+        <ul class="nav-links clean-list hidden">
           <li>
             <a onclick="onSwitchPage('gallery')" class="link nav-link" href="#">Gallery</a>
           </li>
@@ -24,6 +24,10 @@
             <a class="link nav-link" href="#">About</a>
           </li>
         </ul>
+        <div class="mobile-nav">
+          <i onclick="controlMobileNav(true)" class="fa-solid fa-bars"></i>
+          <i onclick="controlMobileNav(false)" class="fa-solid fa-xmark hidden"></i>
+        </div>
       </nav>
     </header>
     <main class="">
@@ -99,6 +103,7 @@
     <script src="js/meme.controller.js"></script>
     <script src="js/saved-memes.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
+    <script src="js/header.controller.js"></script>
     <script src="js/pages.controller.js"></script>
   </body>
 </html>

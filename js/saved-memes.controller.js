@@ -22,9 +22,12 @@ function renderSavedMemes() {
   const elCanvas = document.querySelectorAll('.saved-memes .saved-memes-item canvas')
 
   const savedMemes = getSavedMemes()
+
+  const setWidth = window.innerWidth > 500 ? 500 : window.innerWidth
+
   elCanvas.forEach((el) => {
     const meme = savedMemes[el.id.split('_')[2]]
-    drawMeme(el, meme, 500, true)
+    drawMeme(el, meme, setWidth, true)
   })
 }
 

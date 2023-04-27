@@ -1,10 +1,30 @@
 .page-layout .main-header {
-  padding: 1.6rem 1.2rem;
+  padding: 1.6rem 2rem 1.6rem 1.2rem;
+  width: 100%;
+}
+
+nav.fixed {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  translate: 0 0;
+
+  z-index: 1;
 }
 
 .nav-links {
-  gap: 2.4rem;
-  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5.6rem;
+  height: 100%;
+}
+
+.nav-links.hidden {
+  display: none;
 }
 
 .nav-link:active,
@@ -17,4 +37,27 @@
   font-weight: bold;
   font-family: inherit;
   letter-spacing: 0.8px;
+}
+
+.mobile-nav i {
+  position: unset;
+  font-size: 3.2rem;
+  cursor: pointer;
+}
+.mobile-nav i.fa-xmark {
+  font-size: 3.6rem;
+}
+
+nav.fixed .mobile-nav {
+  position: absolute;
+  top: 1.6rem;
+  right: 2.1rem;
+  translate: 0 0;
+}
+
+i.hidden {
+  display: none;
+}
+i.hidden {
+  display: none;
 }
