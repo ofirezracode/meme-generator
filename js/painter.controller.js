@@ -22,7 +22,7 @@ function afterImgLoad(canvas, ctx, meme, elImg, setWidth) {
   ctx.drawImage(elImg, 0, 0, canvas.width, canvas.height)
 
   meme.lines.forEach((line) => {
-    drawTextLine(ctx, meme, line)
+    drawTextLine(ctx, line)
   })
 
   if (gDownloadRequired) {
@@ -72,12 +72,12 @@ function setCanvasDimensions(canvas, imgWidth, imgHeight, setWidth = 650) {
 /*Drawing*/
 /*******************************/
 
-function drawTextLine(ctx, meme, line) {
+function drawTextLine(ctx, line) {
   ctx.lineWidth = 2
-  ctx.strokeStyle = meme.strokeColor
-  ctx.fillStyle = meme.fontColor
-  ctx.font = `${meme.size}px ${meme.family}`
-  ctx.textAlign = meme.align
+  ctx.strokeStyle = line.strokeColor
+  ctx.fillStyle = line.fontColor
+  ctx.font = `${line.size}px ${line.family}`
+  ctx.textAlign = line.align
   ctx.textBaseline = 'middle'
 
   const { pos } = line
@@ -85,7 +85,7 @@ function drawTextLine(ctx, meme, line) {
   ctx.fillText(line.text, pos.x, pos.y)
   ctx.strokeText(line.text, pos.x, pos.y)
 
-  if (gIsActiveEdit) calcLineDimensions(ctx, line, meme.align)
+  if (gIsActiveEdit) calcLineDimensions(ctx, line, line.align)
 
   if (line.isCurrLine) {
     const borderWidth = 2

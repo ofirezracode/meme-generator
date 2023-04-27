@@ -8,15 +8,13 @@ let gMeme = {
       pos: {},
       rotation: {},
       isCurrLine: true,
+      size: '',
+      align: '',
+      family: '',
+      fontColor: '',
+      strokeColor: '',
     },
   ],
-  size: '',
-  align: '',
-  family: '',
-  fontColor: '',
-  strokeColor: '',
-  memeImgData: '',
-  originalCanvasDimensions: { width: '', height: '' },
 }
 
 let gCurrLine = 0
@@ -25,15 +23,10 @@ function getMeme() {
   return gMeme
 }
 
-function createMeme(img, size = 32, align = 'center', family = 'impact', fontColor = 'white', strokeColor = 'black') {
+function createMeme(img) {
   gMeme = {
     img,
     lines: [],
-    size,
-    align,
-    family,
-    fontColor,
-    strokeColor,
   }
 }
 
@@ -41,35 +34,53 @@ function setMeme(meme) {
   gMeme = meme
 }
 
-function createLine(text = '', pos = '', rotation = '') {
+function createLine(
+  text = '',
+  pos = '',
+  rotation = '',
+  size = 32,
+  align = 'center',
+  family = 'impact',
+  fontColor = 'white',
+  strokeColor = 'black'
+) {
   _resetCurrLine()
   gMeme.lines.push({
     text,
     pos,
     rotation,
     isCurrLine: true,
+    size,
+    align,
+    family,
+    fontColor,
+    strokeColor,
   })
   gCurrLine = gMeme.lines.length - 1
 }
 
+function isLineSelected() {
+  return !(gCurrLine === null)
+}
+
 function setFontSize(size) {
-  gMeme.size += size
+  gMeme.lines[gCurrLine].size += size
 }
 
 function setTextAlign(align) {
-  gMeme.align = align
+  gMeme.lines[gCurrLine].align = align
 }
 
 function setFontFamily(family) {
-  gMeme.family = family
+  gMeme.lines[gCurrLine].family = family
 }
 
 function setFontColor(color) {
-  gMeme.fontColor = color
+  gMeme.lines[gCurrLine].fontColor = color
 }
 
 function setStrokeColor(color) {
-  gMeme.strokeColor = color
+  gMeme.lines[gCurrLine].strokeColor = color
 }
 
 function getCurrLine() {
@@ -77,16 +88,7 @@ function getCurrLine() {
 }
 
 function setCurrLineText(text) {
-  getCurrLine().text = text
-}
-
-function setMemeImgData(memeImgData) {
-  console.log('saving')
-  gMeme.memeImgData = memeImgData
-}
-
-function setOriginalCanvasDimensions(width, height) {
-  gMeme.originalCanvasDimensions = { width, height }
+  gMeme.lines[gCurrLine].text = text
 }
 
 function advanceLine() {
@@ -98,7 +100,7 @@ function advanceLine() {
     gCurrLine++
   }
   _resetCurrLine()
-  getCurrLine().isCurrLine = true
+  gMeme.lines[gCurrLine].isCurrLine = true
 }
 
 function deleteLine() {
@@ -115,9 +117,9 @@ function unsetCurrLine() {
   gCurrLine = null
 }
 
-function setCurrLine(line, isCurrLine) {
+function setCurrLine(line) {
   _resetCurrLine()
-  line.isCurrLine = isCurrLine
+  line.isCurrLine = true
   gCurrLine = gMeme.lines.findIndex((line) => line.isCurrLine)
 }
 
@@ -140,11 +142,11 @@ function getLineClicked(clickedPos) {
 }
 
 function setLineDrag(isDrag) {
-  getCurrLine().isDrag = isDrag
+  gMeme.lines[gCurrLine].isDrag = isDrag
 }
 
 function moveLine(dx, dy) {
-  const { pos } = getCurrLine()
+  const { pos } = gMeme.lines[gCurrLine]
   pos.x += dx
   pos.y += dy
 }

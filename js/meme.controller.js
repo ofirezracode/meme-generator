@@ -6,6 +6,7 @@ let gElCanvas
 let gCtx
 let gStartPos
 let gSetWidth
+let gIsChoosingColor
 
 function canvasInit(src, i) {
   gElCanvas = document.querySelector('canvas')
@@ -15,7 +16,6 @@ function canvasInit(src, i) {
 
   // resizeCanvas()
 
-  // gSetWidth = window.innerWidth > 500 ? 500 : window.innerWidth
   gSetWidth = window.innerWidth > 500 ? 500 : window.innerWidth
 
   if (src === 'gallery') {
@@ -35,11 +35,6 @@ function canvasInit(src, i) {
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
-  // Listen for resize ev
-  // window.addEventListener('resize', resizeCanvas)
-  // window.addEventListener('resize', () => {
-  //   onInit()
-  // })
 }
 
 /*******************************/
@@ -86,33 +81,50 @@ function onDeleteLine() {
 }
 
 function onFontSizeChange(change) {
-  setFontSize(change)
-  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  if (isLineSelected()) {
+    setFontSize(change)
+    drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  }
 }
 
 function onTextAlignChange(direction) {
-  setTextAlign(direction)
-  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  if (isLineSelected()) {
+    setTextAlign(direction)
+    drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  }
 }
 
 function onFontFamilyChange(el) {
-  setFontFamily(el.value)
-  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  if (isLineSelected()) {
+    setFontFamily(el.value)
+    drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  }
 }
 
 function onFontColorChange(el) {
-  setFontColor(el.value)
-  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  if (isLineSelected()) {
+    setFontColor(el.value)
+    drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  }
+  gIsChoosingColor = false
 }
 
 function onStrokeColorChange(el) {
-  setStrokeColor(el.value)
-  drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  if (isLineSelected()) {
+    setStrokeColor(el.value)
+    drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+  }
+  gIsChoosingColor = false
 }
 
 function clearMarkedText() {
   unsetCurrLine()
   drawMeme(gElCanvas, getMeme(), gSetWidth, true)
+}
+
+function setChoosingColor() {
+  gIsChoosingColor = true
+  console.log('gIsChoosingColor', gIsChoosingColor)
 }
 
 /*******************************/
@@ -127,7 +139,7 @@ function addMouseListeners() {
   document.addEventListener('mousedown', function (event) {
     if (event.button === 0) {
       const elMainLayout = event.target.closest('.main-layout')
-      if (!elMainLayout) {
+      if (!elMainLayout && !gIsChoosingColor) {
         clearMarkedText()
       }
     }
@@ -145,7 +157,7 @@ function onDown(ev) {
   const lineClicked = getLineClicked(pos)
 
   if (lineClicked.length === 0) return
-  setCurrLine(lineClicked[0], true)
+  setCurrLine(lineClicked[0])
   setLineDrag(true)
   gStartPos = pos
 
