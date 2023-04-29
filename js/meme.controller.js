@@ -24,11 +24,6 @@ function canvasInit(src, i) {
   } else if (src === 'saved-meme') {
   }
 
-  console.log('document.querySelector("body").offsetWidth', document.querySelector('body').offsetWidth)
-  console.log('document.querySelector("body").clientWidth', document.querySelector('body').clientWidth)
-  console.log('screen.width', screen.width)
-  console.log('window. innerWidth', window.innerWidth)
-
   drawMeme(gElCanvas, getMeme(), gSetWidth, true)
 }
 
@@ -124,7 +119,6 @@ function clearMarkedText() {
 
 function setChoosingColor() {
   gIsChoosingColor = true
-  console.log('gIsChoosingColor', gIsChoosingColor)
 }
 
 /*******************************/
@@ -193,21 +187,14 @@ function getEvPos(ev) {
     x: ev.offsetX,
     y: ev.offsetY,
   }
-  // console.log('pos:', pos)
-  // Check if its a touch ev
+
   if (TOUCH_EVS.includes(ev.type)) {
-    //soo we will not trigger the mouse ev
     ev.preventDefault()
-    //Gets the first touch point
     ev = ev.changedTouches[0]
-    //Calc the right pos according to the touch screen
-    // console.log('ev.pageX:', ev.pageX)
-    // console.log('ev.pageY:', ev.pageY)
     pos = {
       x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
       y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
     }
-    // console.log('pos:', pos)
   }
   return pos
 }

@@ -6,7 +6,6 @@ let gIsMobile
 function onAppInit() {
   gIsMobile = window.innerWidth >= 650 ? false : true
   renderGallery()
-  console.log('getSavedMemes()', getSavedMemes())
   if (getSavedMemes().length > 0) {
     renderSavedMemes()
   } else {

@@ -1,7 +1,6 @@
 'use strict'
 
 function renderSavedMemes() {
-  console.log('here')
   let cardsHTML = ''
   const savedMemes = getSavedMemes()
   cardsHTML += savedMemes
