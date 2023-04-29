@@ -2,66 +2,17 @@
   margin: 7.2rem auto;
 }
 
-.saved-memes {
-  column-gap: 1.6rem;
-}
-
-.saved-memes img {
-  display: block;
-  width: 100%;
-  font-family: impact;
-}
-
-.saved-memes .saved-memes-item {
-  position: relative;
-  height: fit-content;
-  margin-block-end: 1.6rem;
-
-  border-radius: 6px;
-
-  overflow: hidden;
-  cursor: pointer;
-}
-
 .saved-memes .saved-memes-item canvas {
   display: block;
 }
 
-.saved-memes .saved-memes-item .saved-memes-item-overlay {
-  position: absolute;
-  top: 100%;
-  transition: all 0.3s;
-  height: 100%;
-  width: 100%;
-}
-
 .saved-memes-item .saved-memes-item-overlay i {
-  height: 50%;
-  width: 100%;
-  font-size: 3.2rem;
   transition: all 0.2s;
 }
 
-.saved-memes-item .saved-memes-item-overlay i.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .saved-memes-item .saved-memes-item-overlay::after {
-  content: '';
-  position: absolute;
-  border-block-end: 2px solid var(--primary-color);
-  width: 90%;
-  top: 50%;
   left: 50%;
   translate: -50% -50%;
-}
-.saved-memes-item .saved-memes-item-overlay p {
-  padding: 1.6rem;
-  font-size: 1.6rem;
-  font-weight: bold;
-  flex: 1;
 }
 
 .no-saved-memes p {
