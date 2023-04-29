@@ -213,4 +213,14 @@ function onSaveClick() {
   saveMeme(getMeme())
   renderSavedMemes()
   setNoSavedMemesVisibility(false)
+
+  const elMemeSaved = document.querySelector('.meme-saved')
+  elMemeSaved.style.display = 'block'
+  setTimeout(() => {
+    elMemeSaved.classList.add('slide-up')
+    setTimeout(() => {
+      elMemeSaved.classList.remove('slide-up')
+      elMemeSaved.style.display = 'none'
+    }, 1000)
+  }, 1)
 }

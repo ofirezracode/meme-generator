@@ -1,4 +1,5 @@
 .canvas-controls {
+  position: relative;
   height: fit-content;
   width: 100%;
   padding: 2.4rem 1.2rem;
@@ -59,4 +60,28 @@
   padding: 1.2rem;
   font-size: 1.6rem;
   flex: 1;
+}
+
+.meme-saved {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  padding: 1.2rem 1.6rem;
+
+  translate: -50% -50%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+
+  border-radius: 6rem;
+
+  z-index: 1;
+
+  transition: all 1s;
+}
+
+.meme-saved.slide-up {
+  bottom: 75%;
+  opacity: 0;
 }

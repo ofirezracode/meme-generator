@@ -9,7 +9,8 @@
 .canvas-controls .btn,
 .canvas-controls .btn,
 .canvas-controls .link-btn,
-.canvas-controls .select-font-family {
+.canvas-controls .select-font-family,
+.meme-saved {
   color: var(--primary-color);
   background-color: var(--light-primary-color);
 }
@@ -25,4 +26,8 @@ nav.fixed {
 .saved-memes-item .saved-memes-item-overlay,
 .gallery-item .gallery-item-overlay {
   background-color: var(--overlay);
+}
+
+.meme-saved {
+  box-shadow: 0 0 10px var(--primary-color);
 }
