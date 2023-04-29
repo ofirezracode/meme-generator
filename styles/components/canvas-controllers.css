@@ -42,11 +42,6 @@
   transition: all 0.15s;
 }
 
-.canvas-controls .btn:hover,
-.link-btn:hover {
-  scale: 1.2;
-}
-
 .select-font-family {
   grid-column: span 3;
   height: 100%;

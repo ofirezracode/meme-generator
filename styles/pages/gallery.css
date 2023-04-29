@@ -31,10 +31,6 @@
   width: 100%;
 }
 
-.gallery .gallery-item:hover .gallery-item-overlay {
-  top: 0;
-}
-
 .gallery-item .gallery-item-overlay i {
   height: 50%;
   width: 100%;

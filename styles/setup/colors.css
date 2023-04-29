@@ -1,6 +1,8 @@
 :root {
   --primary-color: #1e293b;
   --light-primary-color: #e2e8f0;
+  --box-shadow: rgba(226, 232, 240, 0.25);
+  --overlay: rgba(226, 232, 240, 0.55);
 }
 
 .primary-colors,
@@ -20,12 +22,7 @@ nav.fixed {
   color: var(--light-primary-color);
 }
 
-.canvas-controls .btn:hover,
-.link-btn:hover {
-  box-shadow: 0 0 10px rgba(226, 232, 240, 0.25);
-}
-
 .saved-memes-item .saved-memes-item-overlay,
 .gallery-item .gallery-item-overlay {
-  background-color: rgba(226, 232, 240, 0.55);
+  background-color: var(--overlay);
 }

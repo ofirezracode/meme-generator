@@ -109,4 +109,23 @@
   .about-page h2 {
     font-size: 3.6rem;
   }
+
+  .canvas-controls .btn:hover,
+  .link-btn:hover {
+    scale: 1.2;
+  }
+
+  .gallery .gallery-item:hover .gallery-item-overlay,
+  .saved-memes .saved-memes-item:hover .saved-memes-item-overlay {
+    top: 0;
+  }
+
+  .saved-memes-item .saved-memes-item-overlay i:hover {
+    scale: 1.5;
+  }
+
+  .canvas-controls .btn:hover,
+  .link-btn:hover {
+    box-shadow: 0 0 10px var(--box-shadow);
+  }
 }

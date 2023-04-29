@@ -35,19 +35,11 @@
   width: 100%;
 }
 
-.saved-memes .saved-memes-item:hover .saved-memes-item-overlay {
-  top: 0;
-}
-
 .saved-memes-item .saved-memes-item-overlay i {
   height: 50%;
   width: 100%;
   font-size: 3.2rem;
   transition: all 0.2s;
-}
-
-.saved-memes-item .saved-memes-item-overlay i:hover {
-  scale: 1.5;
 }
 
 .saved-memes-item .saved-memes-item-overlay i.flex {
