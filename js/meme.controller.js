@@ -225,4 +225,5 @@ function onSaveClick() {
   clearMarkedText()
   saveMeme(getMeme())
   renderSavedMemes()
+  setNoSavedMemesVisibility(false)
 }

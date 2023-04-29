@@ -6,7 +6,12 @@ let gIsMobile
 function onAppInit() {
   gIsMobile = window.innerWidth >= 650 ? false : true
   renderGallery()
-  renderSavedMemes()
+  console.log('getSavedMemes()', getSavedMemes())
+  if (getSavedMemes().length > 0) {
+    renderSavedMemes()
+  } else {
+    setNoSavedMemesVisibility(true)
+  }
 }
 
 function onSwitchPage(switchTo) {

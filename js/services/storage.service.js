@@ -34,3 +34,9 @@ function saveMeme(meme) {
 
   saveToStorage(MEMES_KEY, memes)
 }
+
+function deleteMeme(i) {
+  memes.splice(i, 1)
+
+  saveToStorage(MEMES_KEY, memes)
+}
