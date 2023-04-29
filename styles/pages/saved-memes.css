@@ -6,6 +6,10 @@
   display: block;
 }
 
+.saved-memes .saved-memes-item.rise .saved-memes-item-overlay {
+  top: 0;
+}
+
 .saved-memes-item .saved-memes-item-overlay i {
   transition: all 0.2s;
 }
@@ -13,6 +17,10 @@
 .saved-memes-item .saved-memes-item-overlay::after {
   left: 50%;
   translate: -50% -50%;
+}
+
+.saved-memes-item .saved-memes-item-overlay i:hover {
+  scale: 1.5;
 }
 
 .no-saved-memes p {

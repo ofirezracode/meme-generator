@@ -2,9 +2,11 @@
 
 let gCurrPage = '.gallery-page'
 let gIsMobile
+let gIsDesktop
 
 function onAppInit() {
   gIsMobile = window.innerWidth >= 650 ? false : true
+  gIsDesktop = window.innerWidth >= 910 ? true : false
   renderGallery()
   if (getSavedMemes().length > 0) {
     renderSavedMemes()
@@ -34,4 +36,8 @@ function switchPage(switchToClass) {
       elEnteringPage.classList.remove('appear')
     }, 200)
   }, 200)
+}
+
+function getIsDesktop() {
+  return gIsDesktop
 }

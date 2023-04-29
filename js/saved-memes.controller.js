@@ -6,7 +6,7 @@ function renderSavedMemes() {
   cardsHTML += savedMemes
     .map((_, i) => {
       return `
-      <article id="meme_canvas_${i}" class="saved-memes-item">
+      <article onclick="onSavedItemClick(this)" id="meme_canvas_${i}" class="saved-memes-item">
       <canvas id="meme_canvas_${i}" width="218" height="218"></canvas>
       <div class="saved-memes-item-overlay flex column">
       <i onclick="onEditSavedMemeClick(${i})" class="fa-solid fa-pen flex"></i>
@@ -40,6 +40,15 @@ function onDeleteSavedMemeClick(i) {
   renderSavedMemes()
   if (getSavedMemes().length === 0) {
     setNoSavedMemesVisibility(true)
+  }
+}
+
+function onSavedItemClick(el) {
+  if (!getIsDesktop()) {
+    el.classList.add('rise')
+    setTimeout(() => {
+      el.classList.remove('rise')
+    }, 3000)
   }
 }
 
