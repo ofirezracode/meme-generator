@@ -92,7 +92,7 @@ function setCurrLineText(text) {
 }
 
 function advanceLine() {
-  if (!gCurrLine) {
+  if (gCurrLine === null) {
     gCurrLine = 0
   } else if (gCurrLine + 1 >= gMeme.lines.length) {
     gCurrLine = 0
